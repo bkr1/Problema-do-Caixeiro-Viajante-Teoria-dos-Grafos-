@@ -50,7 +50,7 @@ def preenche(nome):
         str = str.split(" ")
         origem = int(str[0])
         destino = int(str[1])
-        peso = int(str[2])
+        peso = float(str[2])
         listaAdj[origem].append((destino, peso))
         matAdj[origem][destino] = peso
         arestas.append((origem, destino, peso))
@@ -63,15 +63,20 @@ def mainMenu():
     while True:
         if op != 3:
             print("\t---------- PROBLEMA DO CAIXEIRO VIAJANTE ----------\n")
-            print("\n\t1.   Algoritmo do Nearest Neighbor;" + "\n\t2.   Algoritmo de Twoopt." +
+            print("\n\t1.   Algoritmo do Nearest Neighbor;" + "\n\t2.   Algoritmo de Twoopt(Refinamento)." +
                  "\n\t3.   Sair.")
             op = int(input("\nDigite sua opcao: "))
         if op == 3:
             mainf()
         if op == 2:
             os.system("cls")
-            print("work in progress...")
+
+            s = func.nearestneighbor(matAdj)
+            sref = func.twoopt(matAdj, s)
+            print(sref)
+
             os.system("pause")
+            os.system("cls")
         if op == 1:
             os.system("cls")
 
