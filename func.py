@@ -17,7 +17,7 @@ def nearestneighbor(matAdj):
 
     u = 0
     s.append(u)
-    naoVisitados.remove(0)
+    naoVisitados.remove(u)
     while len(naoVisitados) != 0:
         v = menorNaoVisit(matAdj, u, naoVisitados)
         #print(s)
