@@ -1,5 +1,6 @@
 import random
 import time
+import os
 
 def menorNaoVisit(matAdj, u, naoVisitados):
     min = 500000
@@ -24,27 +25,27 @@ def nearestneighbor(matAdj):
         naoVisitados.remove(v)
         u = v
     s.append(s[0])
+    print("Distância Nearest Neighbor: " + str(avalia(s, matAdj)))
     return s
 
 def twoopt(matAdj, s):
     tempoFim = time.time() + 60
-    b = 0
-    for i in range(len(s)):
-        b += 1
     
-    b -= 1
     print("Processando...")
     while time.time() < tempoFim:
-        i1 = random.randint(0, b)
-        i2 = random.randint(0, b)
+        i1 = random.randint(1, len(s) - 2)
+        i2 = random.randint(1, len(s) - 2)
 
         if i1 != i2:
-            s2 = s
-            s[i1] = s2[i2]
-            s2[i2] = s[i1]
+            s2 = s.copy()
+
+            aux = s2[i1]
+            s2[i1] = s2[i2]
+            s2[i2] = aux
 
             if avalia(s2, matAdj) < avalia(s, matAdj):
-                s = s2.copy
+                s = s2.copy()
+    print("Distância pós 2 Opt.: " + str(avalia(s, matAdj)))
     return s
 
 
